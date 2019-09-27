@@ -1,13 +1,12 @@
-package prog43;
+package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 
 
-public class ConectorOracle implements ConectorBD {
-/
-//    static ConectorOracle conU = new ConectorOracle("172.16.58.XX", "1521", "xxeam", "pr0dor4", "CONDOR");   
+public class ConectorOracle /* implements ConectorBD */ {
+
     private final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private String DB_URL;
     private String USER;
@@ -43,7 +42,6 @@ public class ConectorOracle implements ConectorBD {
         }
     }
 
-    @Override
     public ResultSet execute(String query) {
         try{
             return getConection().prepareStatement(query).executeQuery();
@@ -51,5 +49,10 @@ public class ConectorOracle implements ConectorBD {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /* PROBAR LA CONECCION */
+    public void testInsert() throws Exception{
+         new ("ip","portafolio","portafolio","portafolio").execute("insert-query");
     }
 }

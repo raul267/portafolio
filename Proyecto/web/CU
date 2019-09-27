@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+        <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                <title>Case of Use Master Page. </title>
+        </head>
+
+        <body>
+                <ul>
+                <li>CU1 - <a href="/CU1"> Mantener información cliente </a> </li>
+                <li>CU2 - <a href="/CU2"> Mantener información profesionales </a> </li>
+                <li>CU3 - <a href="/CU3"> Crear capacitación </a> </li>
+                <li>CU4 - <a href="/CU4"> Planificar visita </a> </li>
+                <li>CU5 - <a href="/CU5"> Revisar cliente </a> </li>
+                <li>CU6 - <a href="/CU6"> Reportar accidente </a> </li>
+                <li>CU7 - <a href="/CU7"> Crear caso de asesoría </a> </li>
+                <li>CU8 - <a href="/CU8"> Ingresar actividad de mejora </a> </li>
+                <li>CU9 - <a href="/CU9"> Revisar actividad mejora </a> </li>
+                <li>CU10 - <a href="/CU10"> Controlar pagos cliente </a> </li>
+                <li>CU11 - <a href="/CU11"> BUG ME :3 </a> </li>
+                <li>CU12 - <a href="/CU12"> Calcular accidentabilidad </a> </li>
+                <li>CU13 - <a href="/CU13"> Ingresar asesoría </a> </li>
+                <li>CU14 - <a href="/CU14"> Visualizar actividades </a> </li>
+                <li>CU15 - <a href="/CU15"> Notificar atrasos </a> </li>
+                <li>CU16 - <a href="/CU16"> Solicitar asesoría especial </a> </li>
+                <li>CU17 - <a href="/CU17"> Crear Cheklist </a> </li>
+                <li>CU18 - <a href="/CU18"> Responder Checklist </a> </li>
+                <li>CU19 - <a href="/CU19"> Generar reporte cliente </a> </li>
+                <li>CU20 - <a href="/CU20"> Generar reporte global</a> </li>
+                </ul>
+        </body>
+
+<html>
+
