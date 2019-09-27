@@ -7,7 +7,12 @@
         </head>
 
         <body>
-                <ul>
+
+		<b>Portafolio casos de Uso Master</b>
+		<br>
+		<a href=portafolio.pdf>PORTAFOLIO CASO 4 PDF</a>
+                
+		<ul>
                 <li>CU1 - <a href="/CU1"> Mantener información cliente </a> </li>
                 <li>CU2 - <a href="/CU2"> Mantener información profesionales </a> </li>
                 <li>CU3 - <a href="/CU3"> Crear capacitación </a> </li>
