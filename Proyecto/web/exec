@@ -1,0 +1,3 @@
+#!/bin/sh
+
+abrowser http://localhost:8080/web/index.jsp
