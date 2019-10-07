@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo "PASO A WEB apache2 y Tomcat8"
+sudo rm -r /var/www/html/web/;
+sudo rm -r /var/lib/tomcat8/webapps/ROOT/web/;
+
+sudo cp -r /home/vorbex/Documents/portafolioReal/portafolio/Proyecto/web/ /var/www/html/;
+sudo cp -r /home/vorbex/Documents/portafolioReal/portafolio/Proyecto/web/ /var/lib/tomcat8/webapps/ROOT/;
+
