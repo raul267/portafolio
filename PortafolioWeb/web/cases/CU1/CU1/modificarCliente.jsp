@@ -1,4 +1,7 @@
-
+<%@page import="model.Comuna"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="DAO.DAOEmpresa" %>
+<%@page import="model.Empresa" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -35,77 +38,103 @@
         <li class="active">Modificar Cliente</li>
       </ol>
     </section>
-
+    <% 
+        DAOEmpresa em = new DAOEmpresa();
+        Empresa e = em.EmpresaID(Integer.parseInt(request.getParameter("id")));
+    %>
     <!-- Main content -->
-    <section class="content">
+    
+    <form method="post" action="../../../ModificarEmpresa">
+        
+        <section class="content">
       <div class="row">
         <div class="col-xs-12">
+            <h1>
+                Modificar datos de la empresa: <%=e.getNombre() %>
+            </h1><hr>
+            <input type="hidden" id="id_empresa" name="id_empresa" value="<%=e.getId_empresa()%>"/>
+             <div class="row">
+                <div class="col-md-1">
+                    <label>Nombre empresa</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control"value="<%=e.getNombre() %>" id="nombre" name="nombre"/>
+                </div>
+            </div>
+                <div class="row" style="margin-top:10px;    ">
+                    <div class="col-md-1">
+                        <label>Direccion</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control"value="<%=e.getDireccion()%>" id="direccion" name="direccion"/>
+                    </div>
+                    
+                    <div class="col-md-1">
+                        <label>Comuna</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control" id="id_comuna" name="id_comuna">
+                            <option value="">Seleccione una comuna</option>
+                            
+                            <% 
+                               DAOEmpresa c = new DAOEmpresa();
+                               ArrayList<Comuna> ac = c.ComunasTodas();
+                               for (Comuna comuna : ac)
+                                   {
+                                       if (comuna.getId_comuna() == e.getId_comuna())
+                                           {
+                                               %>
+                                                <option value="<%= comuna.getId_comuna()%>" class="form-control" id="id_comuna" name="id_comuna" selected><%=comuna.getNombre()%></option>
+                                               <%
 
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Datos Empresa Cliente </h3><br>
+                                           }
+                                        else
+                                        {
+                                              %><option value="<%= comuna.getId_comuna()%>" class="form-control" id="id_comuna" name="id_comuna"><%=comuna.getNombre()%></option><%
+                                        }
+                                    }
+                             %>
+                        </select>
+                    </div>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Rut</th>
-                  <th>Direccion</th>
-                  <th>Estado</th>
-                  <th>Tipo</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>Raul</td>
-                  <td>1-9</td>
-                  <td>Estacion Central</td>
-                  <td>Activo</td>
-                  <td>Base datos</td>
-				  <td><div align="center"><a href="#"><i class="fa fa-edit" title="Modificar" onClick="v('Raul','1-9','Estacion Central','Activo','Base datos','Modificar','')"></a></div></td>
-                </tr>
-                <tr>
-                  <td>Mauro</td>
-                  <td>18-3</td>
-                  <td>Vuelo de codoriz sur 19910</td>
-                  <td>Activo</td>
-                  <td>Desarrollador</td>
-<td><div align="center"><a href="#"><i class="fa fa-edit" title="Modificar" onClick="v('Mauro','18-3','Vuelo de codoriz sur 19910','Activo','Desarrollador','Modificar','')"></a></div></td>
-                </tr>
-                <tr>
-                  <td>Kevin</td>
-                  <td>2-7</td>
-                  <td>San Bernardo</td>
-                  <td>Activo</td>
-                  <td>Prevencion de Riesgo</td>
-				  <td><div align="center"><a href="#"><i class="fa fa-edit" title="Modificar" onClick="v('Kevin','2-7','San Bernardo','Activo','Prevencion de Riesgo','Modificar','')"></a></div></td>
-                </tr>
-                <tr>
-                  <td>Eduardo</td>
-                  <td>3-5</td>
-                  <td>Estacion Central</td>
-                  <td>Activo</td>
-                  <td>Gestor proyecto</td>
-				  <td><div align="center"><a href="#"><i class="fa fa-edit" title="Modificar" onClick="v('Eduardo','3-5','Estacion Central','Inactivo','Gestor proyecto','Modificar','')"></a></div></td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                </tr>
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+                        
+               <div class="row" style="margin-top:10px;">
+                     <div class="col-md-1">
+                        <label>Vigente</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control" id="estado" name="estado" disabled>
+                            <option value="0" 
+                                    <%
+                                        if (e.getEstado() == 0)
+                                            {
+                                             %>selected <%  
+                                            }
+                                    %>>No contratado</option>
+                            <option value="1"<%
+                                        if (e.getEstado() == 1)
+                                            {
+                                             %>selected <%  
+                                            }
+                                    %>>Contratado</option>
+                        </select>
+                    </div>
+               </div>
+             <div class="row" style="margin-top:10px;">
+                 <div class="col-md-3">
+                     <button class="btn btn-primary" type="submit">Volver</button>
+                 </div>
+                 <div class="col-md-3">
+                     <button class="btn btn-success" type="submit">Modificar</button>
+                 </div>
+             </div>
         </div>
+           
         <!-- /.col -->
       </div>
       <!-- /.row -->
     </section>
+    </form>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

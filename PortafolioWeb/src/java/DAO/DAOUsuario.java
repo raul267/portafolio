@@ -18,7 +18,7 @@ import model.Usuario;
 /**
  *
  * @author cetecom
- */
+ */ 
 public class DAOUsuario implements CRUD<Usuario>{
     
      private static String sql_insert = "insert into usuario(id_usuario, id_tipo_usuario,nick_name,password) values(?,?,?,?)";
@@ -27,6 +27,7 @@ public class DAOUsuario implements CRUD<Usuario>{
    private static String sql_update ="UPDATE usuario SET login_usuario=?,pass_usuario=?,id_perfil=? WHERE id_usuario=?";
    private static String sql_selectId = "select * from usuario where id_usuario=? ";
    private static String sql_selectNombre = "select * from usuario where nick_name=? ";
+   private static String sql_maxID = "select max(id_usuario) id from usuario";
     
    private static ConectorOracle objConn = ConectorOracle.InstanciaConn();
     private ResultSet rs;
@@ -77,10 +78,11 @@ public class DAOUsuario implements CRUD<Usuario>{
              PreparedStatement ps;
              
              ps=objConn.getConection().prepareStatement(sql_insert);
-             ps.setInt(1, x.getId_usuario());
-            ps.setString(2, x.getNick_name());
-            ps.setString(3, x.getPassword());
-            ps.setInt(4, x.getId_tipo_usuario());
+                ps.setInt(1, x.getId_usuario());
+                ps.setInt(2, x.getId_tipo_usuario());
+                ps.setString(3, x.getNick_name());
+                ps.setString(4, x.getPassword());
+               
             
              if (ps.executeUpdate()>0) {
                  return true;
@@ -112,6 +114,30 @@ public class DAOUsuario implements CRUD<Usuario>{
         return false;
         
     }
+    
+     public int maxID() {
+        
+         try {
+             int id = 0;
+             Usuario u = null;
+             PreparedStatement ps ;
+             ps = objConn.getConection().prepareStatement(sql_maxID);
+             rs= ps.executeQuery();
+              while (rs.next()) {   
+              id = rs.getInt("id");
+              }
+             
+             return id;
+         } catch (SQLException ex) {
+             Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+         }finally{
+             objConn.cerrar();
+         }
+                return 0;
+    }
+    
+    
+    
 
     @Override
     public boolean modificar(Usuario x) { 

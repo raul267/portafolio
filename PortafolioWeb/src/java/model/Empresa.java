@@ -35,6 +35,21 @@ public class Empresa
     public Empresa()
     {
     }
+    
+    public Empresa(int id_emrpesa)
+    {
+        this.id_empresa = id_empresa;
+    }
+
+    public Empresa(int id_empresa, String nombre, String direccion, int id_comuna)
+    {
+        this.id_empresa = id_empresa;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.id_comuna = id_comuna;
+    }
+    
+    
 
     public int getId_empresa()
     {

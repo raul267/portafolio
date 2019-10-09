@@ -1,11 +1,14 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.ArrayList"%>
+<%@page import="DAO.DAOEmpresa" %>
+<%@page import="model.Empresa" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
+    
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
                 <title>Gestion Cliente. </title>
-
+                
         <script>
 
         function v(nombre,rut,direccion,estado,tipo,o,r) {
@@ -46,31 +49,44 @@
                          <th>Comuna</th>
                          <th>Estado</th>
                          <th>Plan</th>
+                         <th>Editar</th>
+                         <th>Eliminar</th>
                      </tr>
                  </thead>
                  <tbody>
-                     <tr>
-                         <td>La Polar</td>
-                         <td>Retail</td>
-                         <td>Una direccion</td>
-                         <td>Providencia</td>
-                         <td>Vigente</td>
-                         <td>1</td>
-                     </tr>
-                     <tr>
-                         <td>Duoc UC</td>
-                         <td>Educacional</td>
-                         <td>Antonio Varas 666</td>
-                         <td>Providencia</td>
-                         <td>No vigente</td>
-                         <td>1</td>
-                     </tr>
+                     <% DAOEmpresa e = new DAOEmpresa();    
+                        ArrayList<Empresa> le = e.todos();
+                     %>
+                     <% for(Empresa empresa : le){
+                         out.print("<tr>");
+                         out.print("<td>"+empresa.getNombre()+"</td>");
+                         out.print("<td>"+empresa.getId_tipo_empresa()+"</td>");
+                         out.print("<td>"+empresa.getDireccion()+"</td>");
+                         out.print("<td>"+empresa.getId_comuna()+"</td>");
+                         out.print("<td>"+empresa.getEstado()+"</td>");
+                         out.print("<td>"+empresa.getId_plan()+"</td>");
+                         out.print("<td><a href=\"modificarCliente.jsp?id="+empresa.getId_empresa()+"\">Editar</a></td>");
+                          out.print("<td><a href=\"../../../EliminarEmpresa?id="+empresa.getId_empresa()+"\">Eliminar</a></td>");
+                         out.print("</tr>");
+                     }%>
+                    
                    
                  </tbody>
              </table> 
             </div>
             </div>
         </div>
+                     
+                         
+                         <%if (session.getAttribute("error")!=null)
+                             {%>
+                             <label style="color:red">
+                                 <%=session.getAttribute("error") %>
+                             </label>
+                             <%}
+                         %>
+                         <% session.removeAttribute("error"); %>
+                     
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -80,5 +96,7 @@
 <!-- ############################################################################################# -->
 
 
+
 <%@include file="../../../scripts.html" %>
+
 

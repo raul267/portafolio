@@ -5,11 +5,7 @@
  */
 package controller;
 
-import DAO.DAOUsuario;
-import model.Usuario;
 import DAO.DAOEmpresa;
-import model.ConectorOracle;
-import model.Empresa;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,16 +14,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Empresa;
 
 /**
  *
  * @author Raúl Strappa León
  */
-@WebServlet(name = "IngresarEmpresa", urlPatterns =
+@WebServlet(name = "ModificarEmpresa", urlPatterns =
 {
-    "/IngresarEmpresa"
+    "/ModificarEmpresa"
 })
-public class IngresarEmpresa extends HttpServlet
+public class ModificarEmpresa extends HttpServlet
 {
 
     /**
@@ -42,6 +39,8 @@ public class IngresarEmpresa extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+      
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -57,7 +56,7 @@ public class IngresarEmpresa extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        
+       
     }
 
     /**
@@ -72,46 +71,28 @@ public class IngresarEmpresa extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-       //Crear usuario 
-        DAOUsuario u = new DAOUsuario();
-        DAOUsuario au = new DAOUsuario();
-        int id = au.maxID() +1;
-        
         HttpSession session = request.getSession();
-        int id_usuario = id;
-        String nick_name = request.getParameter("nick_name");
-        String password = request.getParameter("password");
-        int id_tipo_usuario = 2; //2 = empresa
-         Usuario us = new Usuario(id_usuario, nick_name,password,id_tipo_usuario);
-        if (u.crear(us))
+       
+        String nombre = request.getParameter("nombre");
+        String direccion = request.getParameter("direccion");
+        int id_comuna = Integer.parseInt(request.getParameter("id_comuna"));
+        int id_empresa = Integer.parseInt(request.getParameter("id_empresa"));
+        
+        Empresa e = new Empresa(id_empresa, nombre, direccion, id_comuna);
+        DAOEmpresa em = new DAOEmpresa();
+        
+        if (em.modificar(e))
         {
-            String nombre = request.getParameter("nombre");
-            int id_tipo_empresa = Integer.parseInt(request.getParameter("id_tipo_empresa"));
-            String direccion = request.getParameter("direccion");
-            int estado = 1; //1 vigente
-            int id_plan = 1; //Unico plan
-            int id_comuna = Integer.parseInt(request.getParameter("id_comuna"));
-            int id_empresa = id;
-       
-       DAOEmpresa em = new DAOEmpresa();
-       Empresa e = new Empresa(id_empresa, nombre, id_tipo_empresa, direccion, estado, id_plan, id_usuario, id_comuna);
-       
-            if (em.crear(e))
-            {
-                response.sendRedirect("cases/CU1/CU1/agregarCliente.jsp"); 
-            }
-            else
-            {
-                session.setAttribute("error", "NO se registro");
-                
-            }
-            
+             response.sendRedirect("cases/CU1/CU1/agregarCliente.jsp"); 
         }
-       
-       
-       
-       
-       
+        else
+        {
+             session.setAttribute("error", "Error al modificar");
+             response.sendRedirect("cases/CU1/CU1/agregarCliente.jsp"); 
+             
+        }
+        
+        
     }
 
     /**

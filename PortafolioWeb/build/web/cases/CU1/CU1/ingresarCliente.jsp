@@ -31,41 +31,34 @@
 
 <section class="content">
 
-    <div class="container">
+    <form method="post" action="../../../IngresarEmpresa">
+            <div class="container">
         <div class="row">
         <div class="col-md-6 col-sm-12">
             <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre empresa" />
         </div>
         <div class="col-md-5" id="divTipo">
             <select class="form-control" id="id_tipo_empresa" name="id_tipo_empresa">
-                <option values="">Seleccione un tipo</option>
-                <option values="1">Estudiantil</option>
+                <option value="">Seleccione un tipo</option>
+                <option value="1">Estudiantil</option>
             </select>
           </div>
         </div><hr>
         <div class="row">
             <div class="col-md-6 col-sm-12">
-                 <input type="text" class="form-control" placeholder="Direccion"/>
+                 <input type="text" class="form-control"id="direccion" name="direccion" placeholder="Direccion"/>
             </div>
              <div class="col-md-5">
             <select class="form-control" id="id_comuna" name="id_comuna">
-                <option values="">Seleccione una comuna</option>
-                <option values="1">Providencia</option>
+                <option value="">Seleccione una comuna</option>
+                <option value="1">Providencia</option>
             </select>
         </div>
         </div><hr>
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <select class="form-control">
-                        <option value="">Seleccione un plan</option>
-                        <option value="1">Plan 1</option>
-                    </select>
-                </div>
-            </div><hr>
                 <div class="row">
                     <h1>Usuario</h1>
                 <div class="col-md-6 col-sm-12">
-                    <input class="form-control" id="nick_name"name="nick_name" type="text" placeholder="Nombre usuario"></input>
+                    <input class="form-control" id="nick_name" name="nick_name" type="text" placeholder="Nombre usuario"></input>
                 </div>
                     <div class="col-md-6 col-sm-12">
                         <input class="form-control" id="password" name="password" type="password" placeholder="Contraseña"></input>
@@ -79,6 +72,7 @@
             </div>
         </div>
     </div>
+    </form>
 </section>
 
 </div>
