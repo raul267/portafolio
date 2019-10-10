@@ -61,7 +61,7 @@ public class DAOUsuario implements CRUD<Usuario>{
              ps = objConn.getConection().prepareStatement(sql_selectAll);
              rs= ps.executeQuery();
              while (rs.next()) {                 
-                 Lu.add(new Usuario(rs.getInt("id_usuario"), rs.getString("nick_name"), rs.getString("password"), rs.getInt("id_perfil_usuario")));
+                 Lu.add(new Usuario(rs.getInt("id_usuario"), rs.getString("nick_name"), rs.getString("password"), rs.getInt("id_tipo_usuario")));
              }
              return Lu;
          } catch (SQLException ex) {

@@ -82,7 +82,7 @@ public class IngresarProfesional extends HttpServlet
         int id_usuario = id;
         String nick_name = request.getParameter("nick_name");
         String password = request.getParameter("password");
-        int id_tipo_usuario = 2; //2 = empresa
+        int id_tipo_usuario = 4; //2 = Profeiosnal
          Usuario us = new Usuario(id_usuario, nick_name,password,id_tipo_usuario);
         if (u.crear(us))
         {   int id_profesional = id; 
