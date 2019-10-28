@@ -5,9 +5,9 @@
  */
 package controller;
 
-import model.Empresa;
+import model_antiguo.Empresa;
 
-import DAO.DAOEmpresa;
+import DAO_ANTIGUO.DAOEmpresa;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

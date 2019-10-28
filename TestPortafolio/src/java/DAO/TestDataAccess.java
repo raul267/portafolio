@@ -72,6 +72,5 @@ public class TestDataAccess {
         System.out.println("\n# Dao Llamada ");
         for(Llamada i : new DaoLlamada().listar()) System.out.println(i);
         
-        
     }
 }

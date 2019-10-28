@@ -16,7 +16,7 @@ public class Asesoria implements DAO {
 	public String toSql(){
 		return "INSERT INTO asesoria " +
 				"( id_asesoria, id_tipo_asesoria, nombre, descripcion, enterreno) " +
-				"values ('"+ id +"' , '"+ id_tipo_asesoria +"' , '"+ nombre +"' , '"+ descripcion +"' , '"+ enTerreno+"');";
+				"values ('"+ id +"' , '"+ id_tipo_asesoria +"' , '"+ nombre +"' , '"+ descripcion +"' , '"+ enTerreno+"')";
 	}
 	public static String createDrop(){
 		return "\nDROP TABLE asesoria CASCADE CONSTRAINTS; ";

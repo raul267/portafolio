@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package controller;
-import DAO.DAOUsuario;
-import model.Usuario;
+import DAO_ANTIGUO.DAOProfesional;
+import DAO_ANTIGUO.DAOUsuario;
+import model_antiguo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -65,7 +66,7 @@ public class InicioSesion extends HttpServlet
         String password = request.getParameter("txtPassword");      
         
         DAOUsuario u = new DAOUsuario();
-       
+       DAO_ANTIGUO.DAOProfesional pro = new DAOProfesional();
        Usuario us = u.UsuarioNombre(nick_name);
         if (us == null)
         {
@@ -74,10 +75,25 @@ public class InicioSesion extends HttpServlet
         }else{
         if ((us.getNick_name().equalsIgnoreCase(nick_name) && us.getPassword().equalsIgnoreCase(password)))
         {
-            
-            response.sendRedirect("indexx.jsp"); 
+            if (us.getId_tipo_usuario()==3) {
+                int id_usuario_cliente=0;
+                DAO_ANTIGUO.DAOEmpresa em = new DAO_ANTIGUO.DAOEmpresa();
+              id_usuario_cliente =  em.EmpresaUserID(us.getId_usuario());
+                
+                session.setAttribute("id_usuario_cliente", id_usuario_cliente);
+            }
+         
             session.setAttribute("sesionNombre", us.getNick_name());
             session.setAttribute("sessionTipo", us.getId_tipo_usuario());
+             
+            if (us.getId_tipo_usuario()==2) {
+                int id_profesional = pro.ProfesionalIDByIdUser(us.getId_usuario());
+                session.setAttribute("id_profesional", id_profesional);
+                        
+            }
+            
+            session.setAttribute("sessionIdUsuario", us.getId_usuario());
+               response.sendRedirect("indexx.jsp"); 
         }
         else
         {

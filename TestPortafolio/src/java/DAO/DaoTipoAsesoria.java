@@ -25,4 +25,13 @@ public class DaoTipoAsesoria {
         return null;
     }
     
+    public String combobox(String name) throws SQLException{
+        String combobox = "<select name='"+name+"'>"; 
+        for(TipoAsesoria t : listar()){
+            combobox += "<option value='"+t.getId()+"' >"+t.getDescripcion()+"</option>";
+        }
+        combobox +="</select>";
+        return combobox;
+    }
+    
 }

@@ -1,64 +1,73 @@
 
 package controller;
 
+import DAO.DaoUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Usuario;
 
-/**
- *
- * @author 56942
- */
 @WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class Login extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-  
+    
+    
+    DaoUsuario daoUsuario = new DaoUsuario();
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.sendRedirect("/TestPortafolio/index.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        
+        String acc = request.getParameter("nick_name");
+        String password = request.getParameter("password");
+        
+        
+        
+        
+        if (acc.isEmpty() || password.isEmpty()){
+            response.sendRedirect("/TestPortafolio/index.jsp");
+        }
+        
+        try {
+            if (daoUsuario.validarSession(acc, password)){
+                Usuario u = daoUsuario.obtener(acc, password);
+                
+                request.getSession().setAttribute("usuario",u);
+                
+                int id_tipo_user = u.getTipoUsuario().getId();
+                switch(id_tipo_user){
+                    case 1: response.sendRedirect("/TestPortafolio/administrador/");break;
+                    case 2: response.sendRedirect("/TestPortafolio/profesional/");break;
+                    case 3: response.sendRedirect("/TestPortafolio/cliente/");break;
+                    default: response.sendRedirect("/TestPortafolio/index.jsp");
+                }
+                
+            }else{
+                
+                response.sendRedirect("/TestPortafolio/index.jsp");
+            }
+        } catch (Exception e) {
+            try (PrintWriter out = response.getWriter()) {
+                e.printStackTrace(new java.io.PrintWriter(out));
+            }
+        }
+            
+            
+            
+        
     }
 
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

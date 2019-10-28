@@ -1,4 +1,4 @@
-<%@page import="DAO.DAOUsuario"%>
+<%@page import="DAO_.DAOUsuario"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Usuario" %>

@@ -1,13 +1,42 @@
 package model;
 
-import java.util.ArrayList;
+public class CheckItem implements DAO {
+	public int id;
+	public String nombre, descripcion;
+	
+	public CheckItem(int id,String nombre, String descripcion){
+		this.id = id;
+		this.descripcion = descripcion; 
+		this.nombre = nombre;
+	}
+	
+	
+	
+	public String toSql(){
+		
+		return "INSERT INTO check_item " +
+				"( id_check_item, nombre, descripcion ) " +
+				"values ('"+ id +"' , '"+ nombre +"' , '"+ descripcion +"');";
+	}
+	public static String createDrop(){
+		return "\nDROP TABLE check_item CASCADE CONSTRAINTS; ";
+	}
+	public static String createTable(){		
+		return 
+				"\nCREATE TABLE check_item (" +
+				"\n id_check_item NUMBER NOT NULL," +
+				"\n nombre VARCHAR2(250) NOT NULL," +
+				"\n descripcion VARCHAR2(250) NOT NULL);";
+				//" CONSTRAINT pk_check_item PRIMARY KEY (id_check_item));";
+	}
+	public static String createAlter(){
+		return "\n ALTER TABLE check_item ADD CONSTRAINT pk_check_item PRIMARY KEY (id_check_item);";
+	}
 
-public class CheckItem{
-
-	private int id;
-	private String descripcion;
-	private int estado;
-	private ArrayList<PropuestaMejora> propuestas;
+    @Override
+    public String toString() {
+        return "CheckItem{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + '}';
+    }
 
     public int getId() {
         return id;
@@ -17,6 +46,14 @@ public class CheckItem{
         this.id = id;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -24,29 +61,5 @@ public class CheckItem{
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    public int getEstado() {
-        return estado;
-    }
-
-    public void setEstado(int estado) {
-        this.estado = estado;
-    }
-
-    public ArrayList<PropuestaMejora> getPropuestas() {
-        return propuestas;
-    }
-
-    public void setPropuestas(ArrayList<PropuestaMejora> propuestas) {
-        this.propuestas = propuestas;
-    }
-
-    public CheckItem(int id, String descripcion, int estado, ArrayList<PropuestaMejora> propuestas) {
-        this.id = id;
-        this.descripcion = descripcion;
-        this.estado = estado;
-        this.propuestas = propuestas;
-    }
-
-
+        
 }

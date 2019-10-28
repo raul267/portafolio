@@ -29,10 +29,12 @@ public class DaoAccidente {
         return list;
     }
     
-    
+    public ResultSet selectALL(){
+        return con.execute("select * from accidente");
+    }
     
     public String comboBoxTipo_Accidente(String name) throws SQLException{   
-        //ConectorOracle con = new ConectorOracle("localhost", "1521", "bd3", "a", "xe");
+       
         ResultSet rs = con.execute("select id_tipo_accidente,descripcion from tipo_accidente order by id_tipo_accidente asc");
         String combobox = "\n<select name='"+name+"'>";
         while(rs.next()) combobox+="   <option value='"+rs.getString("id_tipo_accidente")+"'>"+rs.getString("descripcion")+"</option>";
@@ -40,7 +42,7 @@ public class DaoAccidente {
         return combobox;
     }
     public String listarAccidente() throws SQLException{   
-        ConectorOracle con = new ConectorOracle("localhost", "1521", "bd3", "a", "xe");
+        
         ResultSet rs = con.execute("select id_accidente,id_empleado_cliente,id_tipo_accidente,fecha_accidente,fecha_accidente,descripcion from accidente");
         String combobox = "\n<table>";
         while(rs.next()) combobox+="<tr><td>"+rs.getString(rs.getString("id_accidente"))+"</td>"
@@ -52,7 +54,7 @@ public class DaoAccidente {
         return combobox;
     }
     public String listarTable() throws SQLException{   
-        ConectorOracle con = new ConectorOracle("localhost", "1521", "bd3", "a", "xe");
+        
         ResultSet rs = con.execute("select id_accidente,"
                 + "id_empleado_cliente,"
                 + "id_tipo_accidente,"
@@ -70,5 +72,12 @@ public class DaoAccidente {
         return combobox;
     }
     
-    
+    public boolean ingresar(Accidente accidente){
+        try {
+            con.execute(accidente.toSql());
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }    
 }

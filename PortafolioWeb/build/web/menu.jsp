@@ -1,12 +1,11 @@
 
 <% 
-
 	boolean admin = false;
 	boolean profesional = false;
 	boolean cliente = false;
 	boolean adminsolo = false;
-        int param = Integer.parseInt(session.getAttribute("sessionTipo").toString());
-	//int param = (session.getAttribute("sessionTipo")==null) ? 1 : session.getAttribute("sessionTipo");
+        //int param = Integer.parseInt(session.getAttribute("sessionTipo").toString());
+	int param = (session.getAttribute("sessionTipo")==null) ? 3 : Integer.parseInt(session.getAttribute("sessionTipo").toString());
 
 	switch(param){
 		case 1: admin = true; break;
@@ -17,50 +16,17 @@
 	}
 
 %>
-<!--
-  <meta content="width=device-width, initial-scale=1.3, maximum-scale=1, user-sca$
--->
+<!-- links Bootstrap 3.3.6 -->
+<%@include file="links.html" %>
 
-<!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="/PortafolioWeb/bootstrap/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/PortafolioWeb/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="/PortafolioWeb/dist/css/skins/_all-skins.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="/PortafolioWeb/plugins/iCheck/flat/blue.css">
-  <!-- Morris chart -->
-  <link rel="stylesheet" href="/PortafolioWeb/plugins/morris/morris.css">
-  <!-- jvectormap -->
-  <link rel="stylesheet" href="/PortafolioWeb/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-  <!-- Date Picker -->
-  <link rel="stylesheet" href="/PortafolioWeb/plugins/datepicker/datepicker3.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="/PortafolioWeb/plugins/daterangepicker/daterangepicker.css">
-  <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="/PortafolioWeb/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+ 
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->		
-	
-	</head>
-
-        <body class="hold-transition skin-blue sidebar-mini">
+   <header>     
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="/PortafolioWeb/index.jsp" class="logo">
+    <a href="/TestPortafolio/index.jsp" class="logo">
       <span class="logo-mini"><b>P-</b>G4</span>
       <span class="logo-lg"><b>Portafolio</b>GRUPO4</span>
     </a>
@@ -68,11 +34,12 @@
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
-        </ul>
+        
       </div>
-    </nav>
+    
   </header>
-
+    
+ <body class="hold-transition skin-blue sidebar-mini">
 
 <!-- ############################################################################################# -->
 <!-- ############################################################################################# -->
@@ -81,16 +48,17 @@
   <aside class="main-sidebar">
     <section class="sidebar">
       <ul class="sidebar-menu">
-
+<% if(admin || adminsolo){ 			%>	
         <li class="header"> PORTAFOLIO CASOS DE USO                         </li>
 	
-	<li class="treview"><a href="/PortafolioWeb/portafolio.pdf">
+	<li class="treview"><a href="/TestPortafolio/portafolio.pdf">
 	 <i class="fa fa-fw fa-file-pdf-o"></i>
 	<span class="pull-left-container"> - PORTAFOLIO PDF CASE</a> </span>                        </li>        
-	<li class "treview"><a href="/PortafolioWeb/Informe">
+	<li class "treview"><a href="/TestPortafolio/Informe">
 	  <i class="fa fa-fw fa-file-word-o"></i>
 	<span class="pull-left-container"> - INFORME WORD</a></span>                        </li>        
-
+<% }                            %>
+        
 <% if(admin || adminsolo){ 			%>		
 
      <li id="CU1_0" class="treeview">
@@ -102,11 +70,11 @@
              </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/PortafolioWeb/cases/CU1/CU1/agregarCliente.jsp">      <i id="CU1_1" class="fa fa-circle-o"></i> Agregar Cliente</a></li>
-            <li><a href="/PortafolioWeb/cases/CU1/CU1/modificarCliente.jsp">          <i id="CU1_2" class="fa fa-circle-o"></i> Modificar Cliente</a></li>
-            <li><a href="/PortafolioWeb/cases/CU1/CU1/eliminarCliente.jsp">        <i id="CU1_3" class="fa fa-circle-o"></i> Eliminar Cliente</a></li>
-            <li><a href="/PortafolioWeb/cases/CU1/CU1/listarCliente.jsp">        <i id="CU1_4" class="fa fa-circle-o"></i> Listar Cliente</a></li>
-            <li><a href="/PortafolioWeb/cases/CU1/CU1/todoCliente.jsp">        <i id="CU1_5" class="fa fa-circle-o"></i> (TODO) Cliente</a></li>
+            <li><a href="/TestPortafolio/cases/CU1/CU1/agregarCliente.jsp">      <i id="CU1_1" class="fa fa-circle-o"></i> Agregar Cliente</a></li>
+            <li><a href="/TestPortafolio/cases/CU1/CU1/modificarCliente.jsp">          <i id="CU1_2" class="fa fa-circle-o"></i> Modificar Cliente</a></li>
+            <li><a href="/TestPortafolio/cases/CU1/CU1/eliminarCliente.jsp">        <i id="CU1_3" class="fa fa-circle-o"></i> Eliminar Cliente</a></li>
+            <li><a href="/TestPortafolio/cases/CU1/CU1/listarCliente.jsp">        <i id="CU1_4" class="fa fa-circle-o"></i> Listar Cliente</a></li>
+            <li><a href="/TestPortafolio/cases/CU1/CU1/todoCliente.jsp">        <i id="CU1_5" class="fa fa-circle-o"></i> (TODO) Cliente</a></li>
           </ul>
         </li>
 <% }                            %>
@@ -150,19 +118,35 @@
 <% }                            %>
 <% if(admin || profesional){ 			%>
 
-        <li id="CU4_0" class="treeview">
+        <li id="CU3_0" class="treeview">
           <a href="#">
             <i class="fa fa-circle-o text-yellow"></i>
-            <span>CU4 - Planificar visita </span>
+            <span>CU3 - Crear capacitaci&oacuten</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/PortafolioWeb/cases/CU4/"><i id="CU4_1" class="fa fa-circle-o"></i> Planificar Visita</a></li>
-            <li><a href="/PortafolioWeb/cases/CU4/"><i id="CU4_2" class="fa fa-circle-o"></i> Gestionar Visita</a></li>
-            <li><a href="/PortafolioWeb/cases/CU4/"><i id="CU4_3" class="fa fa-circle-o"></i> Lista de Chequeo</a></li>
-            <li><a href="/PortafolioWeb/cases/CU4/"><i id="CU4_4" class="fa fa-circle-o"></i> TODO</a></li>
+            <li><a href="/TestPortafolio/cases/CU3/"><i id="CU3_1" class="fa fa-circle-o"></i> Gestiona Capacitacion</a></li>
+            <li><a href="/TestPortafolio/cases/CU3/"><i id="CU3_2" class="fa fa-circle-o"></i> Solicita Capacitacion cli</a></li>
+            <li><a href="/TestPortafolio/cases/CU3/"><i id="CU3_3" class="fa fa-circle-o"></i> TODO</a></li>
+          </ul>
+        </li>
+
+<% }                            %>
+<% if(admin || profesional){ 			%>
+
+        <li id="CU4_0" class="treeview">
+          <a href="#">
+            <i class="fa fa-circle-o text-yellow"></i>
+            <span>Generar Capacitacion </span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+       
+            <li><a href="/PortafolioWeb/cases/Profesional/GenerarCapacitacion.jsp"><i id="CU4_4" class="fa fa-circle-o"></i> Generar Capacitacion</a></li>
           </ul>
         </li>
 
@@ -188,15 +172,39 @@
 
         <li id="CU6_0" class="treeview">
           <a href="#">
-            <i class="fa fa-circle-o text-aqua"></i>
-            <span>CU6 - Reportar accidente </span>
+            <% if(admin){%><i class="fa fa-circle-o text-red"></i><%}%>
+            <% if(cliente){%><i class="fa fa-circle-o text-aqua"></i><%}%>
+            
+            
+            <span>Reportar Accidente </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/PortafolioWeb/cases/CU6/"><i id="CU6_1" class="fa fa-circle-o"></i> TODO</a></li>
-            <li><a href="/PortafolioWeb/cases/CU6/"><i id="CU6_2" class="fa fa-circle-o"></i> TODO</a></li>
+            <% if(admin) {%>
+                <li><a href="/TestPortafolio/cases/CU6/"><i id="CU6_1" class="fa fa-circle-o"></i> Gestionar Accidente</a></li>
+            <%}%>    
+            <% if(cliente){%>
+                <li><a href="/TestPortafolio/cases/CU6/"><i id="CU6_1" class="fa fa-circle-o"></i> Reportar Accidente</a></li>
+            <%}%>
+</ul>
+        </li>
+
+<% }                            %>
+<% if(admin || cliente){ 			%>
+
+        <li id="CU6_0" class="treeview">
+          <a href="#">
+            <i class="fa fa-circle-o text-aqua"></i>
+            <span>Agregar Empleado </span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/PortafolioWeb/index.jsp"><i id="CU6_1" class="fa fa-circle-o"></i> Agregar Empleado</a></li>
+           
 </ul>
         </li>
 
@@ -204,7 +212,7 @@
 <% if(admin || profesional){ 			%>
 
         <li id="CU7_0" class="treeview">
-          <a href="#">
+          <a href="/PortafolioWeb/index.jsp">
             <i class="fa fa-circle-o text-yellow"></i>
             <span>CU7 - Crear caso de asesora </span>
             <span class="pull-right-container">
@@ -269,7 +277,7 @@
         </li>
 
 <% }                            %>
-<% if(admin || profesional || cliente){ 			%>
+<% if(admin){ 			%>
 
         <li id="CU11_0" class="treeview">
           <a href="#">
@@ -364,7 +372,7 @@
         <li id="CU16_0" class="treeview">
           <a href="#">
             <i class="fa fa-circle-o text-aqua"></i>
-            <span>CU16 - Solicitar asesor&iacutea especial </span>
+            <span>Solicitar Asesor&iacutea Especial </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -451,7 +459,19 @@
 
 <% }                            %>
 
-
+        <li id="CU19_0" class="treeview">
+          <a href="#">
+            <i class="fa fa-circle-o text-red"></i>
+            <span>Cerrar Session</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="salir.jsp"><i id="CU19_1" class="fa fa-circle-o"></i> Cerrar Sesion</a></li>
+          
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

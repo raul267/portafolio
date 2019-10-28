@@ -1,135 +1,105 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-/**
- *
- * @author Raúl Strappa León
- */
-public class Empresa
-{
-    public int id_empresa;
-    public String nombre;
-    public int id_tipo_empresa;
-    public String direccion;
-    public int estado;
-    public int id_plan;
-    public int id_usuario;
-    public int id_comuna;
+public class Empresa implements DAO {
+	public int id;
+	String nombre, direccion,run,mail,fono,celular;
+	
+	public Empresa(int id,String nombre, String direccion, String run, String mail, String fono, String celular){
+		this.id = id;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.run = run;
+		this.mail = mail;
+		this.fono = fono;
+		this.celular = celular;
+	}
+	
+	public String toSql(){
+		return "INSERT INTO empresa " +
+				"( id_empresa, nombre, direccion, mail, run, fono, celular) " +
+				"values ('"+ id +"' , '"+ nombre +"' , '"+ direccion+"' , '"+ mail + "' , '"+ run +"' , '"+ fono +"' , '"+celular+"');";
+	}
+	public static String createDrop(){
+		return "\nDROP TABLE empresa CASCADE CONSTRAINTS; ";
+	}
+	public static String createTable(){		
+		return 
+			"\nCREATE TABLE empresa (" +
+				
+			"\n id_empresa NUMBER NOT NULL," +
+			"\n nombre VARCHAR2(50) NOT NULL," +
+			"\n direccion VARCHAR2(100) NOT NULL," +
+			"\n mail DATE NOT NULL," +
+			"\n run VARCHAR2(20) NOT NULL," +
+			"\n fono VARCHAR2(20) NOT NULL,"+
+			"\n celular VARCHAR2(20) NOT NULL);";
+			//PK
+			//"CONSTRAINT id_empresa PRIMARY KEY (id_empresa));";
+	}
+	public static String createAlter(){
+		return "\n ALTER TABLE empresa ADD CONSTRAINT pk_empresa PRIMARY KEY (id_empresa);";
+	}
 
-    public Empresa(int id_empresa, String nombre, int id_tipo_empresa, String direccion, int estado, int id_plan, int id_usuario, int id_comuna)
-    {
-        this.id_empresa = id_empresa;
-        this.nombre = nombre;
-        this.id_tipo_empresa = id_tipo_empresa;
-        this.direccion = direccion;
-        this.estado = estado;
-        this.id_plan = id_plan;
-        this.id_usuario = id_usuario;
-        this.id_comuna = id_comuna;
+    public int getId() {
+        return id;
     }
 
-    public Empresa()
-    {
-    }
-    
-    public Empresa(int id_emrpesa)
-    {
-        this.id_empresa = id_empresa;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Empresa(int id_empresa, String nombre, String direccion, int id_comuna)
-    {
-        this.id_empresa = id_empresa;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.id_comuna = id_comuna;
-    }
-    
-    
-
-    public int getId_empresa()
-    {
-        return id_empresa;
-    }
-
-    public void setId_empresa(int id_empresa)
-    {
-        this.id_empresa = id_empresa;
-    }
-
-    public String getNombre()
-    {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre)
-    {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public int getId_tipo_empresa()
-    {
-        return id_tipo_empresa;
-    }
-
-    public void setId_tipo_empresa(int id_tipo_empresa)
-    {
-        this.id_tipo_empresa = id_tipo_empresa;
-    }
-
-    public String getDireccion()
-    {
+    public String getDireccion() {
         return direccion;
     }
 
-    public void setDireccion(String direccion)
-    {
+    public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
-    public int getEstado()
-    {
-        return estado;
+    public String getRun() {
+        return run;
     }
 
-    public void setEstado(int estado)
-    {
-        this.estado = estado;
+    public void setRun(String run) {
+        this.run = run;
     }
 
-    public int getId_plan()
-    {
-        return id_plan;
+    public String getMail() {
+        return mail;
     }
 
-    public void setId_plan(int id_plan)
-    {
-        this.id_plan = id_plan;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
-    public int getId_usuario()
-    {
-        return id_usuario;
+    public String getFono() {
+        return fono;
     }
 
-    public void setId_usuario(int id_usuario)
-    {
-        this.id_usuario = id_usuario;
+    public void setFono(String fono) {
+        this.fono = fono;
     }
 
-    public int getId_comuna()
-    {
-        return id_comuna;
+    public String getCelular() {
+        return celular;
     }
 
-    public void setId_comuna(int id_comuna)
-    {
-        this.id_comuna = id_comuna;
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Empresa{" + "id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", run=" + run + ", mail=" + mail + ", fono=" + fono + ", celular=" + celular + '}';
+    }
+        
+        
 }

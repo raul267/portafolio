@@ -5,11 +5,11 @@
  */
 package controller;
 
-import DAO.DAOUsuario;
-import model.Usuario;
-import DAO.DAOEmpresa;
-import model.ConectorOracle;
-import model.Empresa;
+import DAO_ANTIGUO.DAOUsuario;
+import model_antiguo.Usuario;
+import DAO_ANTIGUO.DAOEmpresa;
+import model_antiguo.ConectorOracle;
+import model_antiguo.Empresa;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

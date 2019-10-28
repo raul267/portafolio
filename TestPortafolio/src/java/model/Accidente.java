@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Accidente implements DAO {
 	int id,id_empleado_cliente,id_tipo_accidente;
@@ -22,8 +23,12 @@ public class Accidente implements DAO {
 	public String toSql(){
 		
 		return "INSERT INTO accidente " +
-				"( id_accidente, id_empleado_cliente, id_tipo_accidente, date, descripcion ) " +
-				"values ('"+ id +"' , '"+ id_empleado_cliente +"' , '"+ id_tipo_accidente +"' , '"+ date +"' , '"+ descripcion +"');";
+				"( id_accidente,"
+                        + " id_empleado_cliente,"
+                        + " id_tipo_accidente,"
+                        + " fecha_accidente,"
+                        + " descripcion ) " +
+				"values ('"+ id +"' , '"+ id_empleado_cliente +"' , '"+ id_tipo_accidente +"' , '"+ new SimpleDateFormat("dd/MM/YYYY").format(date).toString() +"' , '"+ descripcion +"')";
 	}
 	
 	public static String createDrop(){
@@ -103,6 +108,14 @@ public class Accidente implements DAO {
     }
 
     public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Accidente(int id, int id_empleado_cliente, int id_tipo_accidente, Date date, String descripcion) {
+        this.id = id;
+        this.id_empleado_cliente = id_empleado_cliente;
+        this.id_tipo_accidente = id_tipo_accidente;
+        this.date = date;
         this.descripcion = descripcion;
     }
 

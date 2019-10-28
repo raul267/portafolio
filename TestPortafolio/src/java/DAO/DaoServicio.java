@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import model.ConectorOracle;
 import model.Empresa;
+import model.EmpresaCliente;
 import model.Servicio;
 
 public class DaoServicio {
@@ -37,7 +38,7 @@ public class DaoServicio {
         }
         return list;
     }
-    public ArrayList<Servicio> listar(Empresa empresa) throws SQLException{
+    public ArrayList<Servicio> listar(EmpresaCliente empresa) throws SQLException{
         ArrayList<Servicio> list = new ArrayList<Servicio>();
         for(Servicio s : listar()){
             if(s.getEmpresaCliente().getId()== empresa.getId()){
@@ -51,5 +52,40 @@ public class DaoServicio {
         for(Servicio servicio : listar()) if(servicio.getId() == id) return servicio;
         return null;
     }
+    
+    public String exportToHtml(EmpresaCliente e) throws SQLException{
+        for (Servicio s : listar(e)){
+            return "<label>Cantidad de Visitas</label>"
+                + "<span>"+s.getCantidadVisitas()+"</span>"
+                + "<label>Cantidad de Asesorias</label>"
+                + "<span>"+s.getCantidadAsesoria()+"</span>"
+                + "<label>Cantidad de Capacitaciones</label>"
+                + "<span>"+s.getCantidadCapacitacion()+"</span>"
+                + "<label>Check List estado</label>"
+                 + "<span>"+s.getCheckList_estado()+"</span>"
+                + "<label>Costo Total</label>"
+                + "<span>$ "+s.getCostoTotal()+"</span>";
+            }
+            
+        return "<h4>Esta empresa no tiene Servicio ActivadoAun</h4>";
+    }
+    
+    public String exportHTML(EmpresaCliente e) throws SQLException{
+        for (Servicio s : listar(e)){
+            return "<label>Cantidad de Visitas</label>"
+                + "<span>"+s.getCantidadVisitas()+"</span>"
+                + "<label>Cantidad de Asesorias</label>"
+                + "<span>"+s.getCantidadAsesoria()+"</span>"
+                + "<label>Cantidad de Capacitaciones</label>"
+                + "<span>"+s.getCantidadCapacitacion()+"</span>"
+                + "<label>Check List estado</label>"
+                 + "<span>"+s.getCheckList_estado()+"</span>"
+                + "<label>Costo Total</label>"
+                + "<span>$ "+s.getCostoTotal()+"</span>";
+            }
+            
+        return "<h4>Esta empresa no tiene Servicio ActivadoAun</h4>";
+    }
+    
     
 }

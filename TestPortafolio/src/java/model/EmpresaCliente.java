@@ -65,7 +65,17 @@ public class EmpresaCliente implements DAO {
 
     @Override
     public String toString() {
-        return "EmpresaCliente{" + "id=" + id + ", id_rubro=" + id_rubro + ", id_usuario=" + id_usuario + ", nombre=" + nombre + ", direccion=" + direccion + ", run=" + run + ", mail=" + mail + ", fono=" + fono + ", rubro=" + rubro + ", usuario=" + usuario + '}';
+        return "<h3>EmpresaCliente</h3>" + ""
+                + "<label><b>id</label> </b><span>" + id + "</span>"
+                + "<label><b> id_rubro </b></label> <span>" + id_rubro + "</span>"
+                + "<label><b> id_usuario </b></label> <span>" + id_usuario + "</span>"
+                + "<label><b> nombre </b></label> <span>" + nombre + "</span>"
+                + "<label><b> direccion </b></label> <span>" + direccion + "</span>"
+                + "<label><b> run </b></label> <span>" + run + "</span>"
+                + "<label><b> mail </b></label> <span>" + mail + "</span>"
+                + "<label><b> fono </b></label> <span>" + fono + "</span>"
+                + "<label><b> rubro </b></label> <span>" + rubro + "</span>"
+                + "<label><b> usuario </b></label> <span>" + usuario + "</span>";
     }
 
     public int getId() {
@@ -147,6 +157,8 @@ public class EmpresaCliente implements DAO {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+    
+    
         
 	
 }

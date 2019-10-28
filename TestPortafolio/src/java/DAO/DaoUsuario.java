@@ -32,12 +32,33 @@ public class DaoUsuario {
         rs = con.execute("select * from usuario");
         while(rs.next()){
             list.add( new Usuario(
-                    rs.getInt(1),
-                    rs.getString(2),
-                    rs.getString(3),
-                    new DaoTipoUsuario().obtener(rs.getInt(4))
+                    rs.getInt("id_usuario"),
+                    rs.getString("nick_name"),
+                    rs.getString("password"),
+                    new DaoTipoUsuario().obtener(rs.getInt("id_tipo_usuario"))
             ));
         }
         return null;
     }
+    
+    public boolean validarSession(String acc,String password) throws SQLException{
+        rs = con.execute("select * from usuario where nick_name = '"+acc+"' and password = '"+password+"'");
+        if(rs.next()) return true;
+        return false;
+    }
+
+    public Usuario obtener(String acc, String password) throws SQLException {
+        rs = con.execute("select * from usuario where nick_name='"+acc+ "' and password='"+password+ "'");
+        if(rs.next()){
+            return new Usuario(
+                    rs.getInt("id_usuario"),
+                    rs.getString("nick_name"),
+                    rs.getString("password"),
+                    new DaoTipoUsuario().obtener(rs.getInt("id_tipo_usuario"))
+            );
+        }
+        return null;
+    }
+    
+    
 }

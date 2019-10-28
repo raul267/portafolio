@@ -24,25 +24,29 @@ public class DaoEmpleadoCliente {
         combobox+="</select>";
         return combobox;
     }
+    
+    public String comboBoxEmpleadoCliente(String name,EmpresaCliente e) throws SQLException{
+        rs = con.execute("select id_empleado_cliente,nombre from empleado_cliente where id_empresa_cliente = "+e.getId());
+        
+        String combobox ="<select name='"+name+"'>";
+        while(rs.next()){ combobox+="   <option value='"+rs.getString("id_empleado_cliente")+"'>"+rs.getString("nombre")+"</option>";}
+        combobox+="</select>";
+        return combobox;
+    }
+    
+    
     public ArrayList<EmpleadoCliente> listar() throws SQLException{
         ArrayList<EmpleadoCliente> listaEmpleado = new ArrayList<EmpleadoCliente>();
-        /*
-        rs = con.execute("select id_empleado_cliente,nombre,mail,id_empresa from empleado_cliente");
+        
+        rs = con.execute("select id_empleado_cliente,nombre,mail,id_empresa_cliente from empleado_cliente");
         while(rs.next()){ 
             listaEmpleado.add(new EmpleadoCliente(rs.getInt("id_empleado_cliente"),
                     rs.getString("nombre"),
                     rs.getString("maill"),
-                    new EmpresaCliente(0,
-                            new DaoRubro().obtener(rs.getInt("")),
-                            usuario,
-                            nombre,
-                            direccion,
-                            run,
-                            mail,
-                            fono))
-            );
+                    new DaoEmpresaCliente().obtener(rs.getInt("id_empresa_cliente"))
+            ));
         }
-*/
+
        
         return null;
     }
